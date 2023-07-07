@@ -1,41 +1,52 @@
-import { json_formater } from "./PlazaVea/plazavea.js";
-import express from 'express';
-import fs from "fs";
+import { json_formater } from './PlazaVea/plazavea.js';
+import { json_formater_wong } from './Tottus/tottus.js';
+import { upload } from './Upload/upload.js';
+import fs from 'fs';
 
-const app = express();
 
-app.set('port', 3000);
+// json_formater_wong().then((result) => {
 
-await json_formater().then((result) => {
+//     const jsonData = JSON.stringify(result);
 
-    const jsonData = JSON.stringify(result);
+//     fs.writeFile('tottus.json', jsonData, 'utf-8', (err) => {
 
-    fs.writeFile('plazavea.json', jsonData, 'utf-8', (err) => {
+//         if (err) {
+//             console.error('Error al escribir el archivo:', err);
+//             return;
+//         }
 
-        if (err) {
-            console.error('Error al escribir el archivo:', err);
-            return;
-        }
+//         console.log('Archivo JSON creado correctamente.');
 
-        console.log('Archivo JSON creado correctamente.');
+//     })
+// });
 
-    })
+// }).catch((error) => {
+//     console.error(error); // Manejar cualquier error que ocurra durante la ejecución
+// });
 
-    app.get('/api', (req, res) => {
+// json_formater().then((result) => {
 
-        res.json(result);
-    
-    })
+//     const jsonData = JSON.stringify(result);
 
-}).catch((error) => {
-    console.error(error); // Manejar cualquier error que ocurra durante la ejecución
-});
+//     fs.writeFile('plazavea.json', jsonData, 'utf-8', (err) => {
 
-app.listen(app.get('port'), () => {
+//         if (err) {
+//             console.error('Error al escribir el archivo:', err);
+//             return;
+//         }
 
-    console.log('Server on port 3000')
+//         console.log('Archivo JSON creado correctamente.');
 
-});
+//     })
+
+// }).catch((error) => {
+//     console.error(error); // Manejar cualquier error que ocurra durante la ejecución
+// });
+
+await upload();
+
+
+
 
 
 
